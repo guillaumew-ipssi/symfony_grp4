@@ -19,6 +19,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             $animal->setType($this->getReference($data['type']));
             $animal->setGender($data['gender']);
             $animal->setWeight($data['weight']);
+            $animal->setPath($data['path']);
 
             $manager->persist($animal);
         }
@@ -39,7 +40,8 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
                 'age' => 2,
                 'type' => 'type_1',
                 'gender' => 1,
-                'weight' => 5
+                'weight' => 5,
+                'path' => 'test'
             ]
         ];
     }
