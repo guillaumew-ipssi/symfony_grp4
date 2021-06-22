@@ -16,7 +16,7 @@ class AnimalManager
     private $em;
 
     /**
-     * BibleManager constructor.
+     * AnimalManager constructor.
      *
      * @param EntityManagerInterface $em Gestionnaire d'entité
      */
@@ -26,11 +26,7 @@ class AnimalManager
     }
 
     /**
-     * Liste des articles
-     *
-     * @param Request                $request   La requête courante
-     * @param PaginatorInterface     $paginator Gestionnaire de pagination
-     * @param EntityManagerInterface $em        Gestionnaire des entités
+     * Liste des entités Animal
      *
      * @return array
      */
