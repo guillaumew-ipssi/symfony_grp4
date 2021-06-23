@@ -48,6 +48,11 @@ class Animal
      */
     private $path;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="animals")
+     */
+    private $master;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +126,18 @@ class Animal
     public function setPath(?string $path): self
     {
         $this->path = $path;
+
+        return $this;
+    }
+
+    public function getMaster(): ?User
+    {
+        return $this->master;
+    }
+
+    public function setMaster(?User $master): self
+    {
+        $this->master = $master;
 
         return $this;
     }
