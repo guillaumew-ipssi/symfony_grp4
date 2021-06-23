@@ -36,13 +36,101 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
     {
         return [
             [
-                'name' => 'prout',
+                'name' => 'Ricola',
                 'age' => 2,
-                'type' => 'type_1',
-                'gender' => 1,
+                'type' => 'chat',
+                'gender' => 2,
                 'weight' => 5,
-                'path' => 'test'
-            ]
+                'path' => 'ricola.jpg'
+            ],
+            [
+                'name' => 'Sprite',
+                'age' => 1,
+                'type' => 'chat',
+                'gender' => 1,
+                'weight' => 1,
+                'path' => 'sprite.jpeg'
+            ],
+            [
+                'name' => 'Saphir',
+                'age' => 1,
+                'type' => 'chat',
+                'gender' => 2,
+                'weight' => 1,
+                'path' => 'saphir.jpg'
+            ],
+            [
+                'name' => 'Mimine',
+                'age' => 4,
+                'type' => 'chat',
+                'gender' => 2,
+                'weight' => 3,
+                'path' => 'mimine.jpg'
+            ],
+            [
+                'name' => 'Honey',
+                'age' => 3,
+                'type' => 'chat',
+                'gender' => 2,
+                'weight' => 3,
+                'path' => 'honey.jpg'
+            ],
+            [
+                'name' => 'Zorro',
+                'age' => 1,
+                'type' => 'chat',
+                'gender' => 1,
+                'weight' => 1,
+                'path' => 'zorro.jpg'
+            ],
+            [
+                'name' => 'Rabanne',
+                'age' => 7,
+                'type' => 'chien',
+                'gender' => 1,
+                'weight' => 6,
+                'path' => 'rabanne.jpg'
+            ],
+            [
+                'name' => 'Qem',
+                'age' => 4,
+                'type' => 'chien',
+                'gender' => 2,
+                'weight' => 5,
+                'path' => 'qem.jpeg'
+            ],
+            [
+                'name' => 'Smoke',
+                'age' => 3,
+                'type' => 'chien',
+                'gender' => 2,
+                'weight' => 3,
+                'path' => 'smoke.jpg'
+            ],
+            [
+                'name' => 'Boyca',
+                'age' => 2,
+                'type' => 'chien',
+                'gender' => 2,
+                'weight' => 5,
+                'path' => 'boyca.jpeg'
+            ],
+            [
+                'name' => 'Juste',
+                'age' => 7,
+                'type' => 'chien',
+                'gender' => 1,
+                'weight' => 2,
+                'path' => 'juste.png'
+            ],
+            [
+                'name' => 'Twix',
+                'age' => 4,
+                'type' => 'chien',
+                'gender' => 1,
+                'weight' => 3,
+                'path' => 'twix.png'
+            ]              
         ];
     }
 
