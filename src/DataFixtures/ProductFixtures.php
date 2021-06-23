@@ -17,6 +17,7 @@ class ProductFixtures extends Fixture
             $product->setDescription($data['description']);
             $product->setCategory($this->getReference($data['category']));
             $product->setPrice($data['price']);
+            $product->setQuantity($data['quantity']);
             $product->setPath($data['path']);
 
             $manager->persist($product);
@@ -38,6 +39,7 @@ class ProductFixtures extends Fixture
                 'description' => 'Laisse adaptée pour les grands chien, dérouleur résistant avec blocage',
                 'category' => 'category_3',
                 'price' => 29.99,
+                'quantity' => 1,
                 'path' => 'img/products/accessories/laisse_001.jpeg'
             ],
 
@@ -47,6 +49,7 @@ class ProductFixtures extends Fixture
                 'description' => 'Os pour petit chien, renforcant la machoire et assimilé comme une récompense pour le chien.',
                 'category' => 'category_2',
                 'price' => 3.99,
+                'quantity' => 3,
                 'path' => 'img/products/food/os_001.jpeg'
             ],
             [
@@ -54,6 +57,7 @@ class ProductFixtures extends Fixture
                 'description' => 'Croquettes pour les chiens adultes de races moyennes (11 - 25 kg) de 12 mois à 7 ans, renforcent les défenses immunitaires naturelles et le système digestif, avec un complexe d\'antioxydants.',
                 'category' => 'category_2',
                 'price' => 18.99,
+                'quantity' => 2,
                 'path' => 'img/products/food/royal-canin-medium.jpg'
             ],
             [
@@ -61,6 +65,7 @@ class ProductFixtures extends Fixture
                 'description' => 'Sachets fraîcheur de nourriture humide pour chat adulte stérilisé dès 1 an, délicieuses bouchées, favorisent un système urinaire sain, contribuent à maintenir le poids de forme, particulièrement savoureux.',
                 'category' => 'category_2',
                 'price' => 12.49,
+                'quantity' => 10,
                 'path' => 'img/products/food/royal-canin-sterilised.jpg'
             ],
             [
@@ -68,6 +73,7 @@ class ProductFixtures extends Fixture
                 'description' => 'Croquettes diététiques pauvres en calories pour les chats en surpoids, favorisent la perte de poids ou le maintien du poids après un régime, teneur en énergie réduite, 23 % de poulet.',
                 'category' => 'category_2',
                 'price' => 17.49,
+                'quantity' => 0,
                 'path' => 'img/products/food/hills-prescription-diet.jpg'
             ],
             [
@@ -75,6 +81,7 @@ class ProductFixtures extends Fixture
                 'description' => 'Croquettes pour les chats stérilisés dont le métabolisme change et les besoins énergétiques se réduisent, pauvres en graisses, riches en protéines (poulet), sans céréales.',
                 'category' => 'category_2',
                 'price' => 4.99,
+                'quantity' => 8,
                 'path' => 'img/products/food/purizon-adult.jpg'
             ],
             [
@@ -82,6 +89,7 @@ class ProductFixtures extends Fixture
                 'description' => 'Croquettes pauvres en graisses pour chien adulte de toutes les tailles stérilisé ou en surpoids. Formule OPTIWEIGHT pour une perte de poids progressive et durable. Régulent la sensation de faim.',
                 'category' => 'category_2',
                 'price' => 34.99,
+                'quantity' => 0,
                 'path' => 'img/products/food/purina-pro.jpg'
             ],
             [
@@ -89,6 +97,7 @@ class ProductFixtures extends Fixture
                 'description' => 'antiparasite pour chien entre 15kg et 25kg, valable pour 3 mois',
                 'category' => 'category_2',
                 'price' => 19.99,
+                'quantity' => 5,
                 'path' => 'img/products/health/frontline_001.jpeg'
             ]
         ];

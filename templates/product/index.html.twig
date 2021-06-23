@@ -34,7 +34,25 @@
                                                 {{ product.title }}
                                             </h5>
                                             <p class="card-text">{{ product.price }}€</p>
-                                            <a href="{{path('show_product', {'id':  product.id} ) }}" class="btn btn-primary">Description</a>    
+                                            {% if product.quantity > 0 %}
+                                                <p class="card-text fw-bold text-success">En stock</p>
+                                            {% else %}
+                                                <p class="card-text fw-bold text-danger">En rupture de stock</p>
+                                            {% endif %}
+                                            <div class="row mb-2">
+                                                <div class="col">
+                                                    {% if is_granted('ROLE_USER') %}
+                                                        <a href="{{ path('panier_add', {'id': product.id }) }}" class="btn btn-outline-success">Ajouter au panier</a>
+                                                    {% else %}
+                                                        <a href="{{ path('panier_add', {'id': product.id }) }}" class="btn btn-outline-success" disabled>Ajouter au panier</a>
+                                                    {% endif %}
+                                                </div>
+                                            </div>                                            
+                                            <div class="row">
+                                                <div class="col">
+                                                    <a href="{{path('show_product', {'id':  product.id} ) }}" class="btn btn-primary">Description</a>                                                    
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <img style="max-width : 15em; max-height : 15em;" src={{ product.path }} alt={{ product.title }}>
