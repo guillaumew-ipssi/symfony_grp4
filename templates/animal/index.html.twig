@@ -1,13 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Animaux{% endblock %}
+{% block title %}Liste des animaux{% endblock %}
 
 {% block body %}
-    <div class="col-3">
-     {% for animal in animals %}
-        <img src="{{ asset('img/cat.jpg') }}" style="width: 100%">
-        {{ animal.name }}
-    {% endfor %}
+    <div class="container">
+        <div class="row">
+            
+        </div>
+        <div class="row">
+            <div class="col">
+                {% for animal in animals %}
+
+                    <a href="{{ path('game_show', {'id': animal.id}) }}"
+
+                    <div class="row justify-content-center m-4">
+                        <div class="col-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row justify-content-between">
+                                        
+                                        <div class="col-auto">
+                                            <img style="max-width : 15em; max-height : 15em;" src="{{ asset('img/cat.jpg') }}" alt="{{ animal.name }}">
+                                        </div>
+                                        <div class="col-8">
+                                            <h5 class="card-title">
+                                                {{ animal.name }}
+                                            </h5>
+                                            <p class="card-text">{{ animal.name }}</p>
+                                            {# <a href="{{path('show_product', {'id':  product.id} ) }}" class="btn btn-primary">Description</a>     #}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-   
 {% endblock %}
+
