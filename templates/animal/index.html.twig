@@ -8,10 +8,10 @@
             
         </div>
         <div class="row">
-            <div class="col">
+            <div class="row">
                 {% for animal in animals %}
 
-                    <a href="{{ path('game_show', {'id': animal.id}) }}"
+                    <a href="{{ path('game_show', {'id': animal.id}) }}">
 
                     <div class="row justify-content-center m-4">
                         <div class="col-4">
@@ -20,7 +20,7 @@
                                     <div class="row justify-content-between">
                                         
                                         <div class="col-auto">
-                                            <img style="max-width : 15em; max-height : 15em;" src="{{ asset('img/cat.jpg') }}" alt="{{ animal.name }}">
+                                            <img style="max-width : 15em; max-height : 15em;" src={{ asset('img/animals/' ~ animal.path) }} alt="{{ animal.name }}">
                                         </div>
                                         <div class="col-8">
                                             <h5 class="card-title">
