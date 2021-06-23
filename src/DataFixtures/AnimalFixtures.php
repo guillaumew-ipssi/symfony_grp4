@@ -38,7 +38,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Ricola',
                 'age' => 2,
-                'type' => 'chat',
+                'type' => 'type_1',
                 'gender' => 2,
                 'weight' => 5,
                 'path' => 'ricola.jpg'
@@ -46,7 +46,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Sprite',
                 'age' => 1,
-                'type' => 'chat',
+                'type' => 'type_1',
                 'gender' => 1,
                 'weight' => 1,
                 'path' => 'sprite.jpeg'
@@ -54,7 +54,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Saphir',
                 'age' => 1,
-                'type' => 'chat',
+                'type' => 'type_1',
                 'gender' => 2,
                 'weight' => 1,
                 'path' => 'saphir.jpg'
@@ -62,7 +62,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Mimine',
                 'age' => 4,
-                'type' => 'chat',
+                'type' => 'type_1',
                 'gender' => 2,
                 'weight' => 3,
                 'path' => 'mimine.jpg'
@@ -70,7 +70,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Honey',
                 'age' => 3,
-                'type' => 'chat',
+                'type' => 'type_1',
                 'gender' => 2,
                 'weight' => 3,
                 'path' => 'honey.jpg'
@@ -78,7 +78,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Zorro',
                 'age' => 1,
-                'type' => 'chat',
+                'type' => 'type_1',
                 'gender' => 1,
                 'weight' => 1,
                 'path' => 'zorro.jpg'
@@ -86,7 +86,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Rabanne',
                 'age' => 7,
-                'type' => 'chien',
+                'type' => 'type_2',
                 'gender' => 1,
                 'weight' => 6,
                 'path' => 'rabanne.jpg'
@@ -94,7 +94,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Qem',
                 'age' => 4,
-                'type' => 'chien',
+                'type' => 'type_2',
                 'gender' => 2,
                 'weight' => 5,
                 'path' => 'qem.jpeg'
@@ -102,7 +102,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Smoke',
                 'age' => 3,
-                'type' => 'chien',
+                'type' => 'type_2',
                 'gender' => 2,
                 'weight' => 3,
                 'path' => 'smoke.jpg'
@@ -110,7 +110,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Boyca',
                 'age' => 2,
-                'type' => 'chien',
+                'type' => 'type_2',
                 'gender' => 2,
                 'weight' => 5,
                 'path' => 'boyca.jpeg'
@@ -118,7 +118,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Juste',
                 'age' => 7,
-                'type' => 'chien',
+                'type' => 'type_2',
                 'gender' => 1,
                 'weight' => 2,
                 'path' => 'juste.png'
@@ -126,7 +126,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
             [
                 'name' => 'Twix',
                 'age' => 4,
-                'type' => 'chien',
+                'type' => 'type_2',
                 'gender' => 1,
                 'weight' => 3,
                 'path' => 'twix.png'
