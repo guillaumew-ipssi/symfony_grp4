@@ -40,13 +40,6 @@ class ProductFixtures extends Fixture
                 'price' => 29.99,
                 'path' => 'img/products/accessories/laisse_001.jpeg'
             ],
-            [
-                'title' => 'Laisse pour grand chien',
-                'description' => 'Laisse adaptée pour les grands chien, dérouleur résistant avec blocage',
-                'category' => 'category_3',
-                'price' => 29.99,
-                'path' => 'img/products/accessories/laisse_001.jpeg'
-            ],
 
 
             [

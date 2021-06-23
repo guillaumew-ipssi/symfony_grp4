@@ -7,7 +7,7 @@
         <div class="row justify-content-center m-4">
             <div class="col-auto">
                 <div class="card" style="width: 18rem;">
-                    <img style="max-width : 15em; max-height : 15em;" src={{ product.path }} alt={{ product.title }}>
+                    <img style="max-width : 15em; max-height : 15em;" src={{ asset(product.path) }} alt={{ product.title }}>
                     <div class="card-body">
                         <h5 class="card-title">{{ product.title }}</h5>
                         <p class="card-text">{{ product.description }}</p>

@@ -24,8 +24,7 @@ class ProductController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $param_search = $data['search_text'];
-            // dd($param_search);
-            $products = $this->getDoctrine()->getRepository(Product::class)->findBy(['title' => $param_search]);
+            $products = $this->getDoctrine()->getRepository(Product::class)->findByTitle($param_search);
 
             return $this->render('product/index.html.twig', [
                 'products' => $products,
