@@ -38,7 +38,7 @@ class ProductFixtures extends Fixture
                 'description' => 'laisse adaptée pour les grands chien, dérouleur résistant avec blocage',
                 'category' => 'accessories',
                 'price' => 29.99,
-                'path' => 'img/product/accessories/laisse_001.jpeg'
+                'path' => 'img/products/accessories/laisse_001.jpeg'
             ],
 
 
@@ -47,16 +47,18 @@ class ProductFixtures extends Fixture
                 'description' => 'os pour petit chien, renforcant la machoire et assimilé comme une récompense pour le chien',
                 'category' => 'food',
                 'price' => 3.99,
-                'path' => 'img/product/food/os_001.jpeg'
+                'path' => 'img/products/food/os_001.jpeg'
             ],
 
-            
+
+            Royal Canin Medium Adult pour chien
+
             [
                 'title' => 'antiparasite',
                 'description' => 'antiparasite pour chien entre 15kg et 25kg, valable pour 3 mois',
                 'category' => 'health',
                 'price' => 19.99,
-                'path' => 'img/product/health/frontline_001.jpeg'
+                'path' => 'img/products/health/frontline_001.jpeg'
             ]
         ];
     }
