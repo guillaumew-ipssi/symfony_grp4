@@ -14,10 +14,10 @@
                         <p class="card-text">{{ animal.type.name }}</p>
                         <div class="row justify-content-center">
                             <div class="col-auto">
-                                <a href="{{ path('product') }}" class="btn btn-primary">Retour</a>
+                                <a href="{{ path('animal') }}" class="btn btn-primary">Retour</a>
                             </div>
                             <div class="col">
-                                <a href="#" class="btn btn-success">Demande d'adoption</a>
+                                <a href={{ path('animal_adopt', { id: animal.id }) }} class="btn btn-success">Demande d'adoption</a>
                             </div>
                         </div>
                     </div>
