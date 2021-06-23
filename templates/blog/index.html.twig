@@ -15,17 +15,20 @@
 										<div class="col-md-12">
 											<div class="row">
 												<div class="col-md-9">
-													<h4 class="card-title">
-														<a href="{{path('show_product', {'id':  blog.id} ) }}">
+													<h5 class="card-title">
+														<a href="{{path('show_blog', {'id':  blog.id} ) }}">
 															{{ blog.title }}
 														</a>
-													</h4>
+													</h5>
+													Par <b>{{ blog.writted_by }}</b>
 												</div>
 												<div class="col-md-3">
 													Publié le <span class="h6">{{ blog.datecreated|date("m/d/Y") }}</span>
 												</div>
+												<div class="col-md-12">
+													<p class="my-md-2">{{ blog.summary }}</p>
+												</div>
 											</div>
-											<p>{{ blog.summary }}</p>
 										</div>
 									</div>
 								</div>

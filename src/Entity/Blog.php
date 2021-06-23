@@ -25,7 +25,7 @@ class Blog
 	/**
 	* @var string
 	* @ORM\Column(type="text", length=65535)
-*/
+	*/
 	private $description;
 
 	/**
@@ -34,59 +34,77 @@ class Blog
 	private $datecreated;
 
 	/**
-	 * @ORM\Column(type="string", length=255)
-	 */
+	* @var string
+	* @ORM\Column(type="text", length=65535)
+	*/
 	private $summary;
 
+	/**
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $writted_by;
+
 	public function getId(): ?int
-	{
-		return $this->id;
-	}
+			 {
+				 return $this->id;
+			 }
 
 	public function getTitle(): ?string
-	{
-		return $this->title;
-	}
+			 {
+				 return $this->title;
+			 }
 
 	public function setTitle(string $title): self
-	{
-		$this->title = $title;
+			 {
+				 $this->title = $title;
 
-		return $this;
-	}
+				 return $this;
+			 }
 
 	public function getDescription(): ?string
-	{
-		return $this->description;
-	}
+			 {
+				 return $this->description;
+			 }
 
 	public function setDescription(string $description): self
-	{
-		$this->description = $description;
+			 {
+				 $this->description = $description;
 
-		return $this;
-	}
+				 return $this;
+			 }
 
 	public function getDatecreated(): ?\DateTimeInterface
-	{
-		return $this->datecreated;
-	}
+			 {
+				 return $this->datecreated;
+			 }
 
 	public function setDatecreated(\DateTimeInterface $datecreated): self
-	{
-		$this->datecreated = $datecreated;
+			 {
+				 $this->datecreated = $datecreated;
 
-		return $this;
-	}
+				 return $this;
+			 }
 
 	public function getSummary(): ?string
-	{
-		return $this->summary;
-	}
+			 {
+				 return $this->summary;
+			 }
 
 	public function setSummary(string $summary): self
+			 {
+				 $this->summary = $summary;
+
+				 return $this;
+			 }
+
+	public function getWritted_by(): ?string
 	{
-		$this->summary = $summary;
+		return $this->writted_by;
+	}
+
+	public function setWritted_by(string $writted_by): self
+	{
+		$this->writted_by = $writted_by;
 
 		return $this;
 	}
