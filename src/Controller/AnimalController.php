@@ -79,8 +79,9 @@ class AnimalController extends AbstractController
 
                 $this->addFlash('success', "Votre demande d'adoption a bien été envoyé.");
             } catch (\Exception $e) {
-                $this->addFlash('error', "Une erreur est survenue.");
+                $this->addFlash('error', "Une erreur est survenue." . $e);
             }
+
             return $this->redirectToRoute('animal');
         }
 

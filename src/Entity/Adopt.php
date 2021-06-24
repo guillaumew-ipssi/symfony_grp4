@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AdoptRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class Adopt
 {
@@ -64,6 +65,11 @@ class Adopt
      * @ORM\Column(type="integer", nullable=true)
      */
     private $mobile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     /**
      * Adopt constructor.
@@ -191,6 +197,21 @@ class Adopt
     public function setMobile(?int $mobile): self
     {
         $this->mobile = $mobile;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAt(): self
+    {
+        $this->createdAt = new \DateTimeImmutable();
 
         return $this;
     }
