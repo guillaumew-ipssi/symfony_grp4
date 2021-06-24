@@ -1,7 +1,77 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}PETSLAND{% endblock %}
 
 {% block body %}
-    <h1 class="text-center fw-bold">PETSLAND</h1>
+	<h1 class="text-center fw-bold">PETSLAND</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="card pull-right m-3" style="width: 35rem;">
+				  <div class="card-body">
+					<h5 class="card-title">Nos animaux</h5>
+					<ol class="list-group list-group-numbered">
+						{% for animal in animals %}
+						   <li class="list-group-item d-flex justify-content-between align-items-start">
+							   <div class="ms-2 me-auto">
+								  <div class="fw-bold"><a href="{{ path('animal_show', {'id': animal.id}) }}">{{ animal.name }}</a></div>
+								</div>
+								<span class="m-1 badge bg-primary rounded-pill text-uppercase">{{ animal.type.name }}</span>
+								<span class="m-1 badge bg-secondary rounded-pill">{{ animal.age }} an(s)</span>
+						   </li>
+						{% endfor %}
+					</ol>
+					<a href="{{ path('animal') }}" class="pull-right mtop10 btn btn-success">Voir les {{ total_animals }} animaux</a>
+				  </div>
+				</div>
+				<div class="card pull-right m-3" style="width: 35rem;">
+				  <div class="card-body">
+					<h5 class="card-title">Blog</h5>
+					<ol class="list-group list-group-numbered">
+						{% for blog in blogs %}
+						   <li class="list-group-item d-flex justify-content-between align-items-start">
+							   <div class="ms-2 me-auto">
+								  <div class="fw-bold"><a href="{{ path('show_blog', {'id': blog.id}) }}">{{ blog.title }}</a></div>
+								</div>
+								<span class="m-1 badge bg-dark rounded-pill">{{ blog.writted_by }}</span>
+						   </li>
+						{% endfor %}
+					</ol>
+					<a href="{{ path('blog') }}" class="pull-right mtop10 btn btn-success">Voir les {{ total_blogs }} articles de blog</a>
+				  </div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card pull-right m-3" style="width: 35rem;">
+				  <div class="card-body">
+					<h5 class="card-title">Nos produits</h5>
+					<ol class="list-group list-group-numbered">
+						{% for product in products %}
+						   <li class="list-group-item d-flex justify-content-between align-items-start">
+							   <div class="ms-2 me-auto">
+								   <div class="fw-bold"><a href="{{ path('show_product', {'id': product.id}) }}">{{ product.title }}</a></div>
+								   {{ product.price }}€
+								</div>
+								<span class="m-1 badge bg-primary rounded-pill text-uppercase">{{ product.category.name }}</span>
+								{% if product.quantity == 0 %}
+									<span class="m-1 badge bg-danger rounded-pill text-uppercase">Rupture de stock</span>
+								{% else %}
+									<span class="m-1 badge bg-success rounded-pill text-uppercase">En stock</span>
+								{% endif %}
+						   </li>
+						{% endfor %}
+					</ol>
+					<a href="{{ path('product') }}" class="pull-right mtop10 btn btn-success">Voir les {{ total_products }} produits</a>
+				  </div>
+				</div>
+				<div class="card pull-right m-3" style="width: 35rem;">
+				  <div class="card-body">
+					<h5 class="card-title">Donations</h5>
+					<p class="card-text">Vous plaidez la cause animal ?</p>
+					<a href="#" class="btn btn-warning">Je fais un don !</a>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
