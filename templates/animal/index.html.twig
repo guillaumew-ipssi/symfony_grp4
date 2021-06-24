@@ -4,45 +4,29 @@
 
 {% block body %}
     <div class="container">
-        <div class="row">
-            
-        </div>
-        <div class="row">
-            <div class="row">
-                {% for animal in animals %}
-
-                    <a href="{{ path('animal_show', {'id': animal.id}) }}">
-
-                    <div class="row justify-content-center m-4">
-                        <div class="col-4">
-                            {% if animal.adopt is empty %}
-                                <div class="card">
-                            {% else %}
-                                <div class="card" style="background-color: #44444494">
-                            {% endif %}
-                            
-                                <div class="card-body">
-                                    <div class="row justify-content-between">
-                                        
-                                        <div class="col-auto">
-                                            <img style="max-width : 15em; max-height : 15em;" src={{ asset('img/animals/' ~ animal.path) }} alt="{{ animal.name }}">
-                                        </div>
-                                        <div class="col-8">
-                                            <h5 class="card-title">
-                                                {{ animal.name }}
-                                            </h5>
-                                            <p class="card-text">{{ animal.name }}</p>
-                                            {# <a href="{{path('show_product', {'id':  product.id} ) }}" class="btn btn-primary">Description</a>     #}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </a>
-                {% endfor %}
+  <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3 mt-3">
+    {% for animal in animals %}
+        <a href="{{ path('animal_show', {'id': animal.id}) }}">
+            <div class="col">
+                <div class="col-auto">
+                    <img style="max-width : 15em; max-height : 15em;" src={{ asset('img/animals/' ~ animal.path) }} alt="{{ animal.name }}">
+                </div>
+                <div class="col-8">
+                    <h5 class="card-title">
+                        {{ animal.name }}
+                    </h5>
+                    <p class="card-text">{{ animal.age }} ans</p>
+                    <p class="card-text">{{ animal.type.name }}</p>
+                    {# <a href="{{path('show_product', {'id':  product.id} ) }}" class="btn btn-primary">Description</a>     #}
+                </div>
             </div>
-        </div>
-    </div>
+        </a>
+    {% endfor %}
+  </div>
+</div>
+
 {% endblock %}
+
+
+
 
