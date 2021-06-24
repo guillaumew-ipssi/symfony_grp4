@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AdoptRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -54,6 +56,16 @@ class Adopt
     private $user;
 
     /**
+     * @ORM\OneToMany(targetEntity=Animal::class, mappedBy="adopt")
+     */
+    private $animals;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $mobile;
+
+    /**
      * Adopt constructor.
      *
      * @param User $user Le futur maitre de l'animal
@@ -61,6 +73,7 @@ class Adopt
     public function __construct(User $user)
     {
         $this->user = $user;
+        $this->animals = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -136,6 +149,48 @@ class Adopt
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Animal[]
+     */
+    public function getAnimals(): Collection
+    {
+        return $this->animals;
+    }
+
+    public function addAnimal(Animal $animal): self
+    {
+        if (!$this->animals->contains($animal)) {
+            $this->animals[] = $animal;
+            $animal->setAdopt($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnimal(Animal $animal): self
+    {
+        if ($this->animals->removeElement($animal)) {
+            // set the owning side to null (unless already changed)
+            if ($animal->getAdopt() === $this) {
+                $animal->setAdopt(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getMobile(): ?int
+    {
+        return $this->mobile;
+    }
+
+    public function setMobile(?int $mobile): self
+    {
+        $this->mobile = $mobile;
 
         return $this;
     }

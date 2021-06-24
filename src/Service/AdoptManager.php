@@ -5,7 +5,6 @@ namespace App\Service;
 use Exception;
 use App\Entity\User;
 use App\Entity\Adopt;
-use App\Entity\Animal;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
 
@@ -14,7 +13,7 @@ use Symfony\Component\Security\Core\Security;
  *
  * @package App\Service
  */
-class AnimalManager
+class AdoptManager
 {
     private $em;
     private $security;
@@ -31,29 +30,19 @@ class AnimalManager
     }
 
     /**
-     * Liste des entités Animal
-     *
-     * @return array
-     */
-   public function listAnimal(): array
-   {
-        return $this->em->getRepository(Animal::class)->findAll();
-   }
-
-    /**
-     * Adopter un animal
+     * Créer un adopteur
      * 
-     * @param Animal $animal Entité Animal
      * @param Adopt $adopt Entité Adopt
      *
-     * @return Animal
+     * @return Adopt
      */
-    public function adoptAnimal(Animal $animal, Adopt $adopt): Animal
+    public function createAdopt(Adopt $adopt): Adopt
     {
-        $animal->setAdopt($adopt);
+        $this->em->persist($adopt);
 
         $this->em->flush();
 
-        return $animal;
+        return $adopt;
     }
+
 }

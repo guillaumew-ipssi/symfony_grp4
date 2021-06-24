@@ -16,9 +16,13 @@
                             <div class="col-auto">
                                 <a href="{{ path('animal') }}" class="btn btn-primary">Retour</a>
                             </div>
+
                             <div class="col">
+                            {% if animal.adopt is empty %}
                                 <a href={{ path('animal_adopt', { id: animal.id }) }} class="btn btn-success">Demande d'adoption</a>
+                            {% endif %}
                             </div>
+
                         </div>
                     </div>
                 </div>

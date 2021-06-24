@@ -49,9 +49,9 @@ class Animal
     private $path;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="animals")
+     * @ORM\ManyToOne(targetEntity=Adopt::class, inversedBy="animals")
      */
-    private $master;
+    private $adopt;
 
     public function getId(): ?int
     {
@@ -130,14 +130,14 @@ class Animal
         return $this;
     }
 
-    public function getMaster(): ?User
+    public function getAdopt(): ?Adopt
     {
-        return $this->master;
+        return $this->adopt;
     }
 
-    public function setMaster(?User $master): self
+    public function setAdopt(?Adopt $adopt): self
     {
-        $this->master = $master;
+        $this->adopt = $adopt;
 
         return $this;
     }

@@ -15,7 +15,12 @@
 
                     <div class="row justify-content-center m-4">
                         <div class="col-4">
-                            <div class="card">
+                            {% if animal.adopt is empty %}
+                                <div class="card">
+                            {% else %}
+                                <div class="card" style="background-color: #44444494">
+                            {% endif %}
+                            
                                 <div class="card-body">
                                     <div class="row justify-content-between">
                                         

@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Adopt;
 use App\Entity\Animal;
 use App\Form\AdoptType;
+use App\Service\AdoptManager;
 use App\Service\AnimalManager;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -60,22 +62,29 @@ class AnimalController extends AbstractController
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      * @Route("/animal/adopt/{id<\d+>}", name="animal_adopt", methods={"POST", "GET"})
      */
-    public function adopt(AnimalManager $animalManager, Animal $animal): Response
+    public function adopt(Request $request, AdoptManager $adoptManager, AnimalManager $animalManager, Animal $animal): Response
     {
+        // @TODO Check url valid (votter)
         $adopt = new Adopt($this->getUser());
 
         $form = $this->createForm(
             AdoptType::class, $adopt);
 
-        if($form->isSubmitted() && $form->isValid()) {
-            dd('er');
-            try {
-                $animalManager->adoptAnimal($animal);
+        $form->handleRequest($request);
 
+        if($form->isSubmitted() && $form->isValid()) {
+            try {
+                $adoptManager->createAdopt($adopt);
+                $animalManager->adoptAnimal($animal, $adopt);
+
+                $this->addFlash('success', "Votre demande d'adoption a bien été envoyé.");
             } catch (\Exception $e) {
-                
+                $this->addFlash('error', "Une erreur est survenue.");
             }
+            return $this->redirectToRoute('animal');
         }
+
+        
 
         return $this->render(
             'animal/adopt.html.twig',

@@ -23,6 +23,13 @@
     <body>
         <header>
             {% include "structure/menu.html.twig" %}
+            {% for message in app.flashes('success') %}
+                <div style="width: auto; height: auto; background-color: #3fff00; margin-bottom: 30px">
+                <span class="pol-result good">{{ message }}</span>
+                
+                </div>
+        
+            {% endfor %}
         </header>
         {% block body %}{% endblock %}
     </body>

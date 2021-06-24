@@ -7,17 +7,20 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
+use Symfony\Component\HttpFoundation\Request;
 
 class AdoptType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->setMethod(Request::METHOD_POST)
             ->add(
                 'firstname',
                 TextType::class,
                 [
-                    'label' => 'Prénom',
+                    'label' => 'Prénom *',
                     'row_attr' => [
                         'class' => 'form-control'
                     ]
@@ -27,7 +30,7 @@ class AdoptType extends AbstractType
                 'lastname',
                 TextType::class,
                 [
-                    'label' => 'Nom',
+                    'label' => 'Nom *',
                     'row_attr' => [
                         'class' => 'form-control'
                     ]
@@ -37,7 +40,7 @@ class AdoptType extends AbstractType
                 'adress',
                 TextType::class,
                 [
-                    'label' => 'Adresse',
+                    'label' => 'Adresse *',
                     'row_attr' => [
                         'class' => 'form-control'
                     ]
@@ -47,7 +50,7 @@ class AdoptType extends AbstractType
                 'city',
                 TextType::class,
                 [
-                    'label' => 'Ville',
+                    'label' => 'Ville *',
                     'row_attr' => [
                         'class' => 'form-control'
                     ]
@@ -57,7 +60,17 @@ class AdoptType extends AbstractType
                 'zipcode',
                 NumberType::class,
                 [
-                    'label' => 'Code postal',
+                    'label' => 'Code postal *',
+                    'row_attr' => [
+                        'class' => 'form-control'
+                    ]
+                ]
+            )
+            ->add(
+                'mobile',
+                TelType::class,
+                [
+                    'label' => 'Téléphone',
                     'row_attr' => [
                         'class' => 'form-control'
                     ]
@@ -68,7 +81,7 @@ class AdoptType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            // Configure your form options here
+            'csrf_protection' => false
         ]);
     }
 }

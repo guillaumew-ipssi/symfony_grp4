@@ -38,11 +38,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Animal::class, mappedBy="master")
-     */
-    private $animals;
-
-    /**
      * @ORM\OneToMany(targetEntity=Adopt::class, mappedBy="user")
      */
     private $adopts;
@@ -140,37 +135,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    /**
-     * @return Collection|Animal[]
-     */
-    public function getAnimals(): Collection
-    {
-        return $this->animals;
-    }
-
-    public function addAnimal(Animal $animal): self
-    {
-        if (!$this->animals->contains($animal)) {
-            $this->animals[] = $animal;
-            $animal->setMaster($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnimal(Animal $animal): self
-    {
-        if ($this->animals->removeElement($animal)) {
-            // set the owning side to null (unless already changed)
-            if ($animal->getMaster() === $this) {
-                $animal->setMaster(null);
-            }
-        }
-
-        return $this;
-    }
+    }    
 
     /**
      * @return Collection|Adopt[]
