@@ -25,7 +25,7 @@ class Donation
     * @Assert\Range(
         *      min = 1,
         *      max = 1000000,
-        *      notInRangeMessage = "Le champ TypeContrat doit etre de minimum {{ min }}",
+        *      notInRangeMessage = "Le montant doit etre de minimum {{ min }}",
         * )
      */
     private $amount;
