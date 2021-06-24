@@ -19,7 +19,7 @@ class AddCartType extends AbstractType
                 "attr" => [
                     "type" => "number",
                     "class" => "form-control",
-                    "min" => 0,
+                    "min" => 1,
                     "max" => $options["maxQuantity"]
                 ]
             ])

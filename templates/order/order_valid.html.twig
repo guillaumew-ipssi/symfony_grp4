@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande validée{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="fw-bold text-center">Votre commande a bien été validée !</h2>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <div class="col-auto">
+            <a class="btn btn-secondary" href="{{ path('home') }}">Retour à l'accueil</a>
+        </div>
+        <div class="col-auto">
+            <a class="btn btn-primary" href="{{ path('order_list') }}">Voir vos commandes</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

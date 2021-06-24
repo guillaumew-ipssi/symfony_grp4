@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Vos commandes{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2 class="fw-bold text-center">Vos commandes</h2>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-8">
+            {% if orders|length == 0 %}
+                <div class="row border">
+                    <div class="col">
+                        <h5 class="text-center">Vous n'avez aucune commande</h5>
+                    </div>
+                </div>    
+            {% else %}
+            <div class="row justify-content-center m-4">
+                <div class="col">
+                    <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th>Commande</th> 
+                        <th></th> 
+                        </tr>
+                    </thead>
+                    {% for order in orders %}
+                        <tbody>
+                            <tr>
+                                <td>Commande n°{{ order.id }}</td>
+                                <td class="text-center"><a class="btn btn-dark" href="{{ path('order_show', {'id': order.id })}}">Voir</a></td>
+                            </tr>
+                        </tbody>            
+                    {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+            {% endif %}
+    </div>
+</div>
+
+{% endblock %}

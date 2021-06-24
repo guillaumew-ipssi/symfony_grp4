@@ -30,5 +30,19 @@ class ProductRepository extends ServiceEntityRepository
 
         return $query->execute();
     }
+
+    public function updateQuantity($id, $quantity)
+    {
+        $qb = $this->createQueryBuilder('p')
+                ->update()
+                ->set('p.quantity', ':quantity')
+                ->andWhere('p.id LIKE :id')
+                ->setParameter('quantity', $quantity)
+                ->setParameter('id', $id);
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
+    }
     
 }

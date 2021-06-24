@@ -3,44 +3,77 @@
 {% block title %}Panier{% endblock %}
 
 {% block body %}
+
+    {% set total = 0 %}
+
     <h3 class="text-center fw-bold">Votre Panier</h3>
 
-    {% if items|length == 0 %}
-        <div class="row border">
-            <div class="col">
-                <h5 class="text-center">Votre panier est vide</h5>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            {% if items|length == 0 %}
+                <div class="row border">
+                    <div class="col">
+                        <h5 class="text-center">Votre panier est vide</h5>
+                    </div>
+                </div>    
+            {% else %}
+            <div class="row justify-content-center m-4">
+                <div class="col">
+                    <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th>Produit</th> 
+                        <th>Quantité</th> 
+                        <th>Prix TTC Unitaire</th> 
+                        <th>Total</th>
+                        <th></th> 
+                        </tr>
+                    </thead>
+                    {% for item in items %}
+                        <tbody>
+                            <tr>
+                                <td>{{ item.product.title }}</td>
+                                <td>
+                                    <input type="number" class="form-control" value={{ item.quantity }} min="0" max={{ item.product.quantity }}>
+                                    
+                                </td>
+                                <td>{{ item.product.price }}€</td>
+                                <td>{{ item.product.price * item.quantity }}€</td>
+                                {% set total = total + (item.product.price * item.quantity) %}
+                                <td><a class="btn btn-danger" href="{{ path('panier_delete', {'id': item.product.id })}}">Supprimer</a></td>
+                            </tr>
+                        </tbody>            
+                    {% endfor %}
+                    </table>
+                </div>
             </div>
-        </div>    
-    {% else %}
-    <div class="row justify-content-center m-4">
-        <div class="col-6">
-            <table class="table table-striped">
-            <thead>
-                <tr>
-                   <th>Produit</th> 
-                   <th>Quantité</th> 
-                   <th>Prix TTC Unitaire</th> 
-                   <th>Total</th>
-                   <th></th> 
-                </tr>
-            </thead>
-            {% for item in items %}
-                <tbody>
-                    <tr>
-                        <td>{{ item.product.title }}</td>
-                        <td>
-                            <input type="number" class="form-control" value={{ item.quantity }} min="0" max={{ item.product.quantity }}>
-                            
-                        </td>
-                        <td>{{ item.product.price }}€</td>
-                        <td>{{ item.product.price * item.quantity }}€</td>
-                        <td><a class="btn btn-danger" href="{{ path('panier_delete', {'id': item.product.id })}}">Supprimer</a></td>
-                    </tr>
-                </tbody>            
-            {% endfor %}
-            </table>
-        </div>
-    </div>
+            <div class="row justify-content-end">
+                <div class="col-auto">
+                    <p>Total : {{ total }}€</p>
+                </div>
+            </div>
 
-    {% endif %}
+            <div class="row justify-content-end">
+                <div class="col-auto">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class="row mt-4">
+                            <div class="col">
+                                <a class="btn btn-success" href="{{ path('order_valid') }}">Passer la commande</a>                            
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="row mt-4">
+                            <div class="col">
+                                <p>Veuillez vous connecter pour passer la commande</p>                            
+                            </div>
+                            <div class="col-auto">
+                                <a class="btn btn-success" href="{{path('app_login')}}">Se connecter</a>                                
+                            </div>
+                        </div>
+                    {% endif %}                    
+                </div>
+            </div>
+
+            {% endif %}
+    </div>
 {% endblock %}
