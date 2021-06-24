@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+ {% block stylesheets %}
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    {#{{ encore_entry_link_tags('app') }}#}
+    {# <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> #}
+    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="fadeIn first" style="margin-bottom: 25px;">
+    
+      <img src="{{ asset('img/kijou.png') }}" id="icon" alt="User Icon" style="width: 70px" />
+      <h1>Inscription</h1>
+    </div>
+
+    {{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
+        <div>{{ form_row(form.email)}}</div>
+        <div>{{ form_row(form.password)}}</div>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+      <button type="submit" class="fadeIn fourth button-form">S'INSCRIRE</button>
+    {{ form_end(form) }}
+
+  </div>
+</div>
+{% endblock %}
