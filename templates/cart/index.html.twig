@@ -5,7 +5,7 @@
 {% block body %}
     <h3 class="text-center fw-bold">Votre Panier</h3>
 
-    {% if items == 0 %}
+    {% if items|length == 0 %}
         <div class="row border">
             <div class="col">
                 <h5 class="text-center">Votre panier est vide</h5>

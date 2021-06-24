@@ -6,18 +6,41 @@
     <div class="container">    
         <div class="row justify-content-center m-4">
             <div class="col-auto">
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 25em;">
                     <img style="max-width : 15em; max-height : 15em;" src={{ asset(product.path) }} alt={{ product.title }}>
                     <div class="card-body">
                         <h5 class="card-title">{{ product.title }}</h5>
                         <p class="card-text">{{ product.description }}</p>
                         <p class="card-text">{{ product.price }}€</p>
                         <div class="row justify-content-center">
-                            <div class="col-auto">
-                                <a href="{{ path('product') }}" class="btn btn-primary">Retour</a>
-                            </div>
                             <div class="col">
-                                <a href="#" class="btn btn-success">Ajouter au panier</a>
+                                <div class="row">
+                                    <div class="col">
+                                        {% if product.quantity > 0 %}
+                                            <p>Quantité disponibles : {{ product.quantity }}</p>
+                                        {% else %}                                        
+                                            <p class="text-danger">En rupture de stock</p>
+                                        {% endif %}
+                                        
+                                    </div>
+                                </div>
+                                {% if product.quantity > 0 %}
+                                    {{ form_start(form) }}
+                                    <div class="row">
+                                        <div class="col">
+                                            {{ form_widget(form.quantity) }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form_widget(form.submit) }}
+                                        </div>
+                                    </div>
+                                    {{ form_end(form) }}
+                                {% endif %}
+                                <div class="row mt-2">
+                                    <div class="col">
+                                        <a href="{{ path('product') }}" class="btn btn-primary">Retour</a>                                    
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

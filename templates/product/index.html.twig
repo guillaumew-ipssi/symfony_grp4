@@ -38,16 +38,7 @@
                                                 <p class="card-text fw-bold text-success">En stock</p>
                                             {% else %}
                                                 <p class="card-text fw-bold text-danger">En rupture de stock</p>
-                                            {% endif %}
-                                            <div class="row mb-2">
-                                                <div class="col">
-                                                    {% if is_granted('ROLE_USER') %}
-                                                        <a href="{{ path('panier_add', {'id': product.id }) }}" class="btn btn-outline-success">Ajouter au panier</a>
-                                                    {% else %}
-                                                        <a href="{{ path('panier_add', {'id': product.id }) }}" class="btn btn-outline-success" disabled>Ajouter au panier</a>
-                                                    {% endif %}
-                                                </div>
-                                            </div>                                            
+                                            {% endif %}                                            
                                             <div class="row">
                                                 <div class="col">
                                                     <a href="{{path('show_product', {'id':  product.id} ) }}" class="btn btn-primary">Description</a>                                                    

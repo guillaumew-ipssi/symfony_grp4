@@ -4,17 +4,27 @@ namespace App\Controller;
 
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
-class PanierController extends AbstractController
+class CartController extends AbstractController
 {
+
+    private $requestStack;
+
+    public function __construct(RequestStack $requestStack)
+    {
+        $this->requestStack = $requestStack;
+    }
+
     /**
      * @Route("/panier", name="panier")
      */
-    public function index(SessionInterface $session, ProductRepository $productRepository): Response
+    public function index(ProductRepository $productRepository): Response
     {
+        $session = $this->requestStack->getSession();
+
         $panier = $session->get('panier', []);
 
         $panierProduct = [];
@@ -26,19 +36,21 @@ class PanierController extends AbstractController
             ];
         }
 
-        return $this->render('panier/index.html.twig', [
+        return $this->render('cart/index.html.twig', [
             'items' => $panierProduct
         ]);
     }
 
     /**
-     * @Route("/panier/add/{id}", name="panier_add")
+     * @Route("/panier/add/{id}/{quantity}", name="panier_add")
      */
-    public function add($id, SessionInterface $session) 
+    public function add($id, $quantity) 
     {
+        $session = $this->requestStack->getSession();
+
         $panier = $session->get('panier', []);
 
-        $panier[$id] = 1;
+        $panier[$id] = $quantity;
 
         $session->set('panier', $panier);
 
@@ -48,8 +60,11 @@ class PanierController extends AbstractController
     /**
      * @Route("/panier/delete/{id}", name="panier_delete")
      */
-    public function delete($id, SessionInterface $session) 
+    public function delete($id) 
     {
+
+        $session = $this->requestStack->getSession();
+        
         $panier = $session->get('panier');
 
         if($panier[$id]){

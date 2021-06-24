@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Form\AddCartType;
 use App\Form\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,12 +43,30 @@ class ProductController extends AbstractController
      * @param int $id
      * @Route("/product/{id}", name="show_product")
      */
-    public function product ($id)
+    public function product ($id, Request $request)
     {
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+        
+        if($product->getQuantity() > 0){
 
-        return $this->render("product/single.html.twig", [
-            "product" => $product
-        ]);
+            $form = $this->createForm(AddCartType::class, null, ["maxQuantity" => $product->getQuantity()]);
+            $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid()) {
+    
+                $data = $form->getData();
+                $quantity = $data['quantity'];
+                
+                return $this->redirectToRoute('panier_add', [
+                    'id' => $id,
+                    'quantity' => $quantity
+                ]);
+            }
+            $options = ["product" => $product, "form" => $form->createView()];
+        } else {
+            $options = ["product" => $product];
+        }
+
+        return $this->render("product/single.html.twig", $options);
     }
 }
