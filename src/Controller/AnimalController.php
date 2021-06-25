@@ -67,6 +67,10 @@ class AnimalController extends AbstractController
      */
     public function adopt(Request $request, AdoptManager $adoptManager, AnimalManager $animalManager, Animal $animal): Response
     {
+        if($animal->getAdopt()) {
+            throw $this->createAccessDeniedException();
+        }
+
         // @TODO Check url valid (votter)
         $adopt = new Adopt($this->getUser());
 

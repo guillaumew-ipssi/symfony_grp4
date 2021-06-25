@@ -24,30 +24,35 @@ class Adopt
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Information requise.")
+     * @Assert\Type("string")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Information requise.")
+     * @Assert\Type("string")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Information requise.")
+     * @Assert\Type("string")
      */
     private $adress;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Information requise.")
+     * @Assert\Type("string")
      */
     private $city;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message="Information requise.")
+     * @Assert\Type("integer")
      */
     private $zipcode;
 
@@ -63,6 +68,7 @@ class Adopt
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
      */
     private $mobile;
 
