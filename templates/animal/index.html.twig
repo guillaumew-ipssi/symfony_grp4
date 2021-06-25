@@ -1,32 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des animaux{% endblock %}
-
-{% block body %}
-    <div class="container">
-  <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3 mt-3">
-    {% for animal in animals %}
-        <a href="{{ path('animal_show', {'id': animal.id}) }}">
-            <div class="col">
-                <div class="col-auto">
-                    <img style="max-width : 15em; max-height : 15em;" src={{ asset('img/animals/' ~ animal.path) }} alt="{{ animal.name }}">
-                </div>
-                <div class="col-8">
-                    <h5 class="card-title">
-                        {{ animal.name }}
-                    </h5>
-                    <p class="card-text">{{ animal.age }} ans</p>
-                    <p class="card-text">{{ animal.type.name }}</p>
-                    {# <a href="{{path('show_product', {'id':  product.id} ) }}" class="btn btn-primary">Description</a>     #}
-                </div>
-            </div>
-        </a>
-    {% endfor %}
-  </div>
-</div>
-
+{% block title %}Liste des animaux
 {% endblock %}
 
+{% block body %}
+	<div class="container">
+		<div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3 mt-3">
+			{% for animal in animals %}
 
+				<div class="col">
+					<div class="card" style="width: 18rem;">
+						<img class="card-img-top" src={{ asset('img/animals/' ~ animal.path) }} alt="{{ animal.name }}">
+						<div class="card-body">
+							<h5 class="card-title">
+								{{ animal.name }}</h5>
+							<p class="card-text">Age :
+								{{ animal.age }}
+								ans
+							</p>
+							<a href="{{ path('animal_show', {'id': animal.id}) }}" class="btn btn-primary">
+								Plus de détails
+							</a>
+							{# <a href="{{path('show_product', {'id':  product.id} ) }}" class="btn btn-primary">Description</a>     #}
+						</div>
+					</div>
+				</div>
 
+			{% endfor %}
+		</div>
+	</div>
 
+{% endblock %}

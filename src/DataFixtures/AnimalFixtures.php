@@ -39,7 +39,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'Ricola',
                 'age' => 2,
                 'type' => 'type_1',
-                'gender' => 2,
+                'gender' => 0,
                 'weight' => 5,
                 'path' => 'ricola.jpg'
             ],
@@ -55,7 +55,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'Saphir',
                 'age' => 1,
                 'type' => 'type_1',
-                'gender' => 2,
+                'gender' => 0,
                 'weight' => 1,
                 'path' => 'saphir.jpg'
             ],
@@ -63,7 +63,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'Mimine',
                 'age' => 4,
                 'type' => 'type_1',
-                'gender' => 2,
+                'gender' => 0,
                 'weight' => 3,
                 'path' => 'mimine.jpg'
             ],
@@ -71,7 +71,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'Honey',
                 'age' => 3,
                 'type' => 'type_1',
-                'gender' => 2,
+                'gender' => 0,
                 'weight' => 3,
                 'path' => 'honey.jpg'
             ],
@@ -95,7 +95,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'Qem',
                 'age' => 4,
                 'type' => 'type_2',
-                'gender' => 2,
+                'gender' => 0,
                 'weight' => 5,
                 'path' => 'qem.jpeg'
             ],
@@ -103,7 +103,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'Smoke',
                 'age' => 3,
                 'type' => 'type_2',
-                'gender' => 2,
+                'gender' => 0,
                 'weight' => 3,
                 'path' => 'smoke.jpg'
             ],
@@ -111,7 +111,7 @@ class AnimalFixtures extends Fixture implements DependentFixtureInterface
                 'name' => 'Boyca',
                 'age' => 2,
                 'type' => 'type_2',
-                'gender' => 2,
+                'gender' => 0,
                 'weight' => 5,
                 'path' => 'boyca.jpeg'
             ],

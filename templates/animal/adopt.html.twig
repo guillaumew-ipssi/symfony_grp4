@@ -1,37 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Animal{% endblock %}
+{% block title %}Animal
+{% endblock %}
 
 {% block body %}
+	<div class="container p-5 mt-2">
 
-    <p>Vous souhaitez adopter un animal ? Votre décision est mûrement réfléchie ? 
-    Remplissez ce formulaire pour établir un contact avec le refuge. 
-    Nous vous conseillons d’indiquer votre numéro de téléphone 
-    pour qu’on vous rappelle plus rapidement.</p>
+		<div class="alert alert-success" role="alert">
+			<h4 class="alert-heading">Vous souhaitez adopter un animal ?</h4>
+			<p>
+				Votre décision est mûrement réfléchie ? Remplissez ce formulaire pour établir un contact avec le refuge. Nous vous conseillons d’indiquer votre numéro de téléphone pour qu’on vous rappelle plus rapidement.
+			</p>
+		</div>
 
-    {{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
-    <div class="container">    
-        <form>
-        <div class="form-group">
-            {{ form_row(form.firstname) }}
-        </div>
-        <div class="form-group">
-            {{ form_row(form.lastname) }}
-        </div>
-         <div class="form-group">
-            {{ form_row(form.adress) }}
-        </div>
-         <div class="form-group">
-            {{ form_row(form.city) }}
-        </div>
-         <div class="form-group">
-            {{ form_row(form.zipcode) }}
-        </div>
-        <div class="form-group">
-            {{ form_row(form.mobile) }}
-        </div>
-        <button type="submit" class="btn btn-primary">Valider</button>
-        </form>
-    </div>
-    {{ form_end(form) }}
+		{{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
+
+		<div class="container mt-4" style="width: 18rem;">
+
+			<div class="card p-4">
+				<form class="pl-4">
+					<div class="row ">
+						<div class="col-12 mt-2">
+							<div>{{ form_label(form.firstname)}}</div>
+							<div>{{ form_widget(form.firstname)}}</div>
+						</div>
+						<div class="col-12 mt-2">
+							<div>{{ form_label(form.lastname)}}</div>
+							<div>{{ form_widget(form.lastname)}}</div>
+						</div>
+						<div class="col-12 mt-2">
+							<div>{{ form_label(form.adress)}}</div>
+							<div>{{ form_widget(form.adress)}}</div>
+						</div>
+						<div class="col-12 mt-2">
+							<div>{{ form_label(form.city)}}</div>
+							<div>{{ form_widget(form.city)}}</div>
+						</div>
+						<div class="col-12 mt-2">
+							<div>{{ form_label(form.zipcode)}}</div>
+							<div>{{ form_widget(form.zipcode)}}</div>
+						</div>
+						<div class="col-12 mt-2">
+							<div>{{ form_label(form.mobile)}}</div>
+							<div>{{ form_widget(form.mobile)}}</div>
+						</div>
+						<button type="submit" class="btn btn-success mt-4">Valider</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		{{ form_end(form) }}
+
+	</div>
 {% endblock %}

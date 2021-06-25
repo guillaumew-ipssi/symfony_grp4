@@ -2,15 +2,18 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields="email", message="Adresse mail déjà utilisé")
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -23,6 +26,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Assert\NotBlank(message="Information requise.")
+     * @Assert\Email(
+     *     message = "Cet email n'est pas valide."
+     * )
      */
     private $email;
 
@@ -34,6 +41,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Information requise.")
+    * @Assert\Length(
+     *      min = 8,
+     *      max = 50,
+     *      minMessage = "Votre mot de passe doit contenir minimum {{ limit }} caractères",
+     *      maxMessage = "Votre mot de passe doit contenir maximum {{ limit }} caractères"
+     * )
      */
     private $password;
 
@@ -42,10 +56,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $adopts;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Donation::class, mappedBy="user")
+     */
+    private $donations;
+
     public function __construct()
     {
         $this->animals = new ArrayCollection();
         $this->adopts = new ArrayCollection();
+        $this->donations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,6 +181,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($adopt->getUser() === $this) {
                 $adopt->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Donation[]
+     */
+    public function getDonations(): Collection
+    {
+        return $this->donations;
+    }
+
+    public function addDonation(Donation $donation): self
+    {
+        if (!$this->donations->contains($donation)) {
+            $this->donations[] = $donation;
+            $donation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDonation(Donation $donation): self
+    {
+        if ($this->donations->removeElement($donation)) {
+            // set the owning side to null (unless already changed)
+            if ($donation->getUser() === $this) {
+                $donation->setUser(null);
             }
         }
 
