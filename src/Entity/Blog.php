@@ -45,57 +45,57 @@ class Blog
 	private $writted_by;
 
 	public function getId(): ?int
-			 {
-				 return $this->id;
-			 }
+	{
+		 return $this->id;
+	}
 
 	public function getTitle(): ?string
-			 {
-				 return $this->title;
-			 }
+	{
+		 return $this->title;
+	}
 
 	public function setTitle(string $title): self
-			 {
-				 $this->title = $title;
+	{
+		 $this->title = $title;
 
-				 return $this;
-			 }
+		 return $this;
+	}
 
 	public function getDescription(): ?string
-			 {
-				 return $this->description;
-			 }
+	{
+		 return $this->description;
+	}
 
 	public function setDescription(string $description): self
-			 {
-				 $this->description = $description;
+	{
+		 $this->description = $description;
 
-				 return $this;
-			 }
+		 return $this;
+	}
 
 	public function getDatecreated(): ?\DateTimeInterface
-			 {
-				 return $this->datecreated;
-			 }
+	{
+		 return $this->datecreated;
+	}
 
 	public function setDatecreated(\DateTimeInterface $datecreated): self
-			 {
-				 $this->datecreated = $datecreated;
+	{
+		 $this->datecreated = $datecreated;
 
-				 return $this;
-			 }
+		 return $this;
+	}
 
 	public function getSummary(): ?string
-			 {
-				 return $this->summary;
-			 }
+	{
+		 return $this->summary;
+	}
 
 	public function setSummary(string $summary): self
-			 {
-				 $this->summary = $summary;
+	{
+		 $this->summary = $summary;
 
-				 return $this;
-			 }
+		 return $this;
+	}
 
 	public function getWritted_by(): ?string
 	{

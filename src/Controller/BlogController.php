@@ -11,6 +11,7 @@ use App\Entity\Blog;
 class BlogController extends AbstractController
 {
 	/**
+	 * On retourne tout les articles de blog
 	 * @Route("/blog", name="blog")
 	 */
 	public function index()
@@ -23,6 +24,7 @@ class BlogController extends AbstractController
 	}
 
 	/**
+	 * On retourne le détail d'un article de blog
 	 * @param int $id
 	 * @Route("/blog/{id}", name="show_blog")
 	 */

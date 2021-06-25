@@ -14,15 +14,18 @@ use App\Entity\Type;
 class HomeController extends AbstractController
 {
 	/**
+	 * On retourne les produits + articles + animaux + les totaux
 	 * @Route("/", name="home")
 	 */
 	public function index(): Response
 	{
+		// On récupère les produits + articles de blog + animaux limité à 5
 		$products = $this->getDoctrine()->getRepository(Product::class)->findBy([], [],5);
+		// On récupère les articles de blog les plus récent
 		$blogs = $this->getDoctrine()->getRepository(Blog::class)->findBy([],['datecreated' => 'DESC'], 5);
 		$animals = $this->getDoctrine()->getRepository(Animal::class)->findBy([], [],5);
 
-		// totaux
+		// On récupère les totaux
 		$total_products = $this->getDoctrine()->getRepository(Product::class)->findAll();
 		$total_blogs = $this->getDoctrine()->getRepository(Blog::class)->findAll();
 		$total_animals = $this->getDoctrine()->getRepository(Animal::class)->findAll();
