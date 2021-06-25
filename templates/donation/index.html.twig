@@ -1,23 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des donations{% endblock %}
+{% block title %}Liste des donations
+{% endblock %}
 
 {% block body %}
-    <div class="container">
-    <a href={{ path('donation_new') }} class="btn btn-info">Faire une donation ♡</a>
-  <div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3 mt-3">
-    {% for donation in donations %}
-            <div class="col border">
-                <div class="col-auto">
-                     <h5 class="card-title">
-                        {{ donation.user.email }}
-                    </h5>
-                    <p class="card-text">{{ donation.amount|format_currency('EUR') }}</p>
-                    <p class="card-text">{{ donation.message }}</p>
-                </div>
-            </div>
-    {% endfor %}
-  </div>
-</div>
+	<div class="container">
+
+		<a href={{ path('donation_new') }} class="btn btn-info mt-4">Faire une donation
+		</a>
+
+		<div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3 mt-3 ">
+			{% for donation in donations %}
+				<div class="col border p-2">
+					<div class="col-auto ">
+						<h5 class="card-title">
+							{{ donation.user.email }}
+						</h5>
+						<p class="card-text">{{ donation.amount|format_currency('EUR') }}</p>
+						<p class="card-text">{{ donation.message }}</p>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
 
 {% endblock %}
