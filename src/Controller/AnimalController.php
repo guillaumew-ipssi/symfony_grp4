@@ -27,10 +27,13 @@ class AnimalController extends AbstractController
     {
         $animals = $animalManager->listAnimal();
 
+        $lastAdoptedAnimals = $animalManager->getLastAdopted();
+
         return $this->render(
             'animal/index.html.twig',
             [
                 'animals' => $animals,
+                'last_animals' => $lastAdoptedAnimals
             ]
         );
     }
@@ -68,16 +71,18 @@ class AnimalController extends AbstractController
         $adopt = new Adopt($this->getUser());
 
         $form = $this->createForm(
-            AdoptType::class, $adopt);
+            AdoptType::class,
+            $adopt
+        );
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $adoptManager->createAdopt($adopt);
                 $animalManager->adoptAnimal($animal, $adopt);
 
-                $this->addFlash('success', "Votre demande d'adoption a bien été envoyé.");
+                $this->addFlash('success', "Votre demande d'adoption a bien été envoyée.");
             } catch (\Exception $e) {
                 $this->addFlash('error', "Une erreur est survenue." . $e);
             }
@@ -85,7 +90,6 @@ class AnimalController extends AbstractController
             return $this->redirectToRoute('animal');
         }
 
-        
 
         return $this->render(
             'animal/adopt.html.twig',

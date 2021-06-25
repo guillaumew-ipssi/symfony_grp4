@@ -5,11 +5,25 @@
 
 {% block body %}
 	<div class="container">
+		<div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3 mt-5 mb-5 border">
+			{% for animal_adopted in last_animals %}
+
+				<div class="col">
+					<a href="{{ path('animal_show', {'id': animal_adopted.id}) }}">
+					<div class="card" style="width: 10rem">
+						<img class="card-img-top" src={{ asset('img/animals/' ~ animal_adopted.path) }} alt="{{ animal_adopted.name }}">
+						
+					</div>
+					</a>
+				</div>
+
+			{% endfor %}
+		</div>
 		<div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3 mt-3">
 			{% for animal in animals %}
 
 				<div class="col">
-					<div class="card" style="width: 18rem;">
+					<div class="card" style="width: 18rem">
 						<img class="card-img-top" src={{ asset('img/animals/' ~ animal.path) }} alt="{{ animal.name }}">
 						<div class="card-body">
 							<h5 class="card-title">
@@ -21,6 +35,9 @@
 							<a href="{{ path('animal_show', {'id': animal.id}) }}" class="btn btn-primary">
 								Plus de détails
 							</a>
+							{% if animal.adopt is not empty %}
+								<span class="badge bg-success">Adopté</span>
+							{% endif %}
 							{# <a href="{{path('show_product', {'id':  product.id} ) }}" class="btn btn-primary">Description</a>     #}
 						</div>
 					</div>
