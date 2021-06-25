@@ -23,6 +23,8 @@
 
 		{{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
 
+    
+
 		<div class="container mt-4" style="width: 18rem;">
 
 			<div class="card p-4">
@@ -30,26 +32,32 @@
 					<div class="row ">
 					
 						<div class="col-12 mt-2">
+							<span class="badge badge-danger">{{ form_errors(form.firstname) }}</span>
 							<div>{{ form_label(form.firstname)}}</div>
 							<div class="adopt-input">{{ form_widget(form.firstname)}}</div>
 						</div>
 						<div class="col-12 mt-2">
+							<span class="badge badge-danger">{{ form_errors(form.lastname) }}</span>
 							<div>{{ form_label(form.lastname)}}</div>
 							<div class="adopt-input">{{ form_widget(form.lastname)}}</div>
 						</div>
 						<div class="col-12 mt-2">
+							<span class="badge badge-danger">{{ form_errors(form.adress) }}</span>
 							<div>{{ form_label(form.adress)}}</div>
 							<div class="adopt-input">{{ form_widget(form.adress)}}</div>
 						</div>
 						<div class="col-12 mt-2">
+							<span class="badge badge-danger">{{ form_errors(form.city) }}</span>
 							<div>{{ form_label(form.city)}}</div>
 							<div class="adopt-input">{{ form_widget(form.city)}}</div>
 						</div>
 						<div class="col-12 mt-2">
+							<span class="badge badge-danger">{{ form_errors(form.zipcode) }}</span>
 							<div>{{ form_label(form.zipcode)}}</div>
 							<div class="adopt-input">{{ form_widget(form.zipcode)}}</div>
 						</div>
 						<div class="col-12 mt-2">
+							<span class="badge badge-danger">{{ form_errors(form.mobile) }}</span>
 							<div>{{ form_label(form.mobile)}}</div>
 							<div class="adopt-input">{{ form_widget(form.mobile)}}</div>
 						</div>
