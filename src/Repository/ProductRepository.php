@@ -19,18 +19,24 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    
-    public function findByTitle($value)
+    /**
+     * @method Product[] findByTitle(string $title) 
+     */
+    public function findByTitle($title)
     {
         $qb = $this->createQueryBuilder('p')
-            ->andWhere('p.title LIKE :val')
-            ->setParameter('val', '%'.$value.'%');
+            ->andWhere('p.title LIKE :title')
+            ->setParameter('title', '%'.$title.'%');
 
         $query = $qb->getQuery();
 
         return $query->execute();
     }
 
+    /**
+     * @method void updateQuantity(int $id, int $quantity)
+     * 
+     */
     public function updateQuantity($id, $quantity)
     {
         $qb = $this->createQueryBuilder('p')

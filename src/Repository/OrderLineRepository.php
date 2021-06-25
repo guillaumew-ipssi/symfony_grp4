@@ -19,22 +19,22 @@ class OrderLineRepository extends ServiceEntityRepository
         parent::__construct($registry, OrderLine::class);
     }
 
-    // /**
-    //  * @return OrderLine[] Returns an array of OrderLine objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @method mixed findWithProduct
+     */
+    public function findWithProduct($id)
     {
-        return $this->createQueryBuilder('o')
-            ->andWhere('o.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('o.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $qb = $this->createQueryBuilder('l')
+            ->select('l.quantity as orderline_quantity, l.total as orderline_total, p.id as product_id, p.title as product_title, p.price as product_price')
+            ->join('l.product', 'p')
+            ->leftJoin('l.customerOrder', 'o')
+            ->where('l.customerOrder = :id')
+            ->setParameter('id', $id);
+
+        $query = $qb->getQuery();
+
+        return $query->execute();
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?OrderLine

@@ -1,55 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Votre commande n°{{orderId}}{% endblock %}
+{% block title %}Votre commande n°{{orderId}}
+{% endblock %}
 
 {% block body %}
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h2 class="fw-bold text-center">Votre commande n°{{orderId}}</h2>
-        </div>
-    </div>
 
-    <div class="row justify-content-center">
-        <div class="col-8">
-            <div class="row justify-content-center m-4">
-                <div class="col">
-                    <table class="table table-striped">
-                    <thead>
-                        <tr>
-                        <th>Produit</th> 
-                        <th>Quantité</th> 
-                        <th>Prix TTC Unitaire</th> 
-                        <th>Total</th> 
-                        </tr>
-                    </thead>
-                    {% for product in products %}
-                        <tbody>
-                            <tr>
-                                <td>{{ product.product[0].title }}</td>
-                                <td>{{ product.order[loop.index0].quantity }}</td>
-                                <td>{{ product.product[0].price }}€</td>
-                                <td>{{ product.order[loop.index0].total }}€</td>
-                            </tr>
-                        </tbody>            
-                    {% endfor %}
-                    </table>
-                </div>
-            </div>
-    </div>
-     <div class="row justify-content-center mt-4">
-        <div class="col-auto">
-            <p class="fw-bold">Total : {{ products[0].order[0].customerOrder.total }}</p>
-        </div>
-    </div>
-    <div class="row justify-content-center mt-4">
-        <div class="col-auto">
-            <a class="btn btn-secondary" href="{{ path('home') }}">Retour à l'accueil</a>
-        </div>
-        <div class="col-auto">
-            <a class="btn btn-primary" href="{{ path('order_list') }}">Vos commandes</a>
-        </div>
-    </div>
-</div>
+	{% set total = 0 %}
 
-{% endblock %}
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<h2 class="fw-bold text-center">Votre commande n°{{orderId}}</h2>
+			</div>
+		</div>
+
+		<div class="row justify-content-center">
+			<div class="col-8">
+				<div class="row justify-content-center m-4">
+					<div class="col">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Produit</th>
+									<th>Quantité</th>
+									<th>Prix TTC Unitaire</th>
+									<th>Total</th>
+								</tr>
+							</thead>
+							{% for orderLine in order %}
+								<tbody>
+									<tr>
+										<td>{{ orderLine.product_title }}</td>
+										<td class="text-center">{{ orderLine.orderline_quantity }}</td>
+										<td class="text-center">{{ orderLine.product_price }}€</td>
+										<td class="text-center">{{ orderLine.orderline_total }}€</td>
+
+										{% set total = total + orderLine.orderline_total %}
+									</tr>
+								</tbody>
+							{% endfor %}
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-center mt-4">
+				<div class="col-auto">
+					<p class="fw-bold">Total :
+						{{ total }}€</p>
+				</div>
+			</div>
+			<div class="row justify-content-center mt-4">
+				<div class="col-auto">
+					<a class="btn btn-secondary" href="{{ path('home') }}">Retour à l'accueil</a>
+				</div>
+				<div class="col-auto">
+					<a class="btn btn-primary" href="{{ path('order_list') }}">Vos commandes</a>
+				</div>
+			</div>
+		</div>
+
+	{% endblock %}

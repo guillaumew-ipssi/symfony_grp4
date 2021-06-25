@@ -25,10 +25,12 @@ class CartController extends AbstractController
     {
         $session = $this->requestStack->getSession();
 
+        // Si panier n'existe pas dans la session, alors on retourne un array vide
         $panier = $session->get('panier', []);
 
         $panierProduct = [];
 
+        // On récupère les entités produits selon l'id, pour avoir le produit complet et non juste son id
         foreach ($panier as $id => $quantity) {
             $panierProduct[] = [
                 'product' => $productRepository->find($id),
@@ -50,6 +52,7 @@ class CartController extends AbstractController
 
         $panier = $session->get('panier', []);
 
+        // On ajoute l'id du produit choisit et sa quantité
         $panier[$id] = $quantity;
 
         $session->set('panier', $panier);
@@ -67,6 +70,7 @@ class CartController extends AbstractController
         
         $panier = $session->get('panier');
 
+        // On supprime l'id contenu dans le panier
         if($panier[$id]){
             unset($panier[$id]);
         }

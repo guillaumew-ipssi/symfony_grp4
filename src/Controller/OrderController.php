@@ -4,14 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Order;
 use App\Entity\OrderLine;
-use App\Entity\Product;
 use App\Repository\ProductRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Service\UserManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Security("is_granted('ROLE_USER')")
+ */
 class OrderController extends AbstractController
 {
     private $requestStack;
@@ -22,16 +26,6 @@ class OrderController extends AbstractController
     }
 
     /**
-     * @Route("/order", name="order")
-     */
-    public function index(): Response
-    {
-        return $this->render('order/index.html.twig', [
-            'controller_name' => 'OrderController',
-        ]);
-    }
-
-    /**
      * @Route("/order_valid", name="order_valid")
      */
     public function orderValid(ProductRepository $productRepository): Response
@@ -39,17 +33,26 @@ class OrderController extends AbstractController
 
         $session = $this->requestStack->getSession();
 
+        // On récupère le panier
         $panier = $session->get('panier', []);
 
+        // On créé une nouvelle commande
         $order = new Order();
+        $order->setCreatedAt(new \DateTimeImmutable());
+        $order->setUser($this->getUser());
         $totalOrder = 0;
 
         $em = $this->getDoctrine()->getManager();
 
+        // On créé une ligne par produit
         foreach ($panier as $id => $quantity) {
+
+            // Création d'une ligne qui compose une commande
             $orderLine = new OrderLine();
 
+            // On récupère le produit selon son id
             $product = $productRepository->find($id);
+            // Stock initial du produit
             $product_quantity = $product->getQuantity();
 
             $orderLine->setProduct($product);
@@ -58,13 +61,16 @@ class OrderController extends AbstractController
             $orderLine->setTotal($total);
             $orderLine->setCustomerOrder($order);
 
+            // Nouveau stock du produit, et update en base
             $product_new_quantity = $product_quantity - $quantity;
             $productRepository->updateQuantity($product->getId(), $product_new_quantity);
 
+            // On récupère le total de chaque ligne pour obtenir le total de la commande
             $totalOrder += $total;
             $order->addOrderLine($orderLine);
             
             $em->persist($orderLine);
+            
         }
         $order->setTotal($totalOrder);
         
@@ -83,8 +89,8 @@ class OrderController extends AbstractController
      */
     public function list_order(): Response
     {
-
-        $orders = $this->getDoctrine()->getRepository(Order::class)->findAll();
+        // On récupère uniquement les commandes qui concernent l'user connecté
+        $orders = $this->getDoctrine()->getRepository(Order::class)->findOrderByUser($this->getUser());
 
         return $this->render('order/index.html.twig', [
             'orders' => $orders
@@ -97,17 +103,11 @@ class OrderController extends AbstractController
     public function show_order($id): Response
     {
 
-        $order = $this->getDoctrine()->getRepository(OrderLine::class)->findBy(['customerOrder'=> $id]);
-
-        $products = [];
-        for ($i=0; $i < count($order); $i++) { 
-            $product = $this->getDoctrine()->getRepository(Product::class)->findBy(["id" => $order[$i]->getProduct()->getId()]);
-            $products[$i]["order"] = $order;
-            $products[$i]["product"] = $product;
-        }
+        // On récupère les lignes de la commande, avec le détail du produit
+        $order = $this->getDoctrine()->getRepository(OrderLine::class)->findWithProduct($id);
 
         return $this->render('order/order_show.html.twig', [
-            'products' => $products,
+            'order' => $order,
             'orderId' => $id
         ]);
     }

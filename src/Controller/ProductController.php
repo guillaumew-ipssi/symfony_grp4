@@ -17,13 +17,16 @@ class ProductController extends AbstractController
      */
     public function index(Request $request): Response
     {
+        // Récupérer tous les produits
         $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
 
+        // Formulaire pour filtrer les produits par le titre
         $form = $this->createForm(SearchType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
+            // Récupérer le paramètre et chercher les produits
             $param_search = $data['search_text'];
             $products = $this->getDoctrine()->getRepository(Product::class)->findByTitle($param_search);
 
@@ -45,10 +48,13 @@ class ProductController extends AbstractController
      */
     public function product ($id, Request $request)
     {
+        // Récupérer le produit selon son id
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
         
+        // Si le produit n'est pas en stock, on n'ajoute pas de formulaire pour le panier
         if($product->getQuantity() > 0){
 
+            // Formulaire pour ajouter un produit au panier avec sa quantité
             $form = $this->createForm(AddCartType::class, null, ["maxQuantity" => $product->getQuantity()]);
             $form->handleRequest($request);
     
@@ -62,8 +68,10 @@ class ProductController extends AbstractController
                     'quantity' => $quantity
                 ]);
             }
+            // Si le formulaire existe on renvoie un array avec le form
             $options = ["product" => $product, "form" => $form->createView()];
         } else {
+            // Sinon juste le produit
             $options = ["product" => $product];
         }
 
