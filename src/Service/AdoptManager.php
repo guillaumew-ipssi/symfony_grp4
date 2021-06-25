@@ -30,6 +30,16 @@ class AdoptManager
     }
 
     /**
+     * Liste des entités Animal
+     *
+     * @return array
+     */
+    public function getLastAdopted(): array
+    {
+        return $this->em->getRepository(Adopt::class)->findLastAdoptedAnimals();
+    }
+
+    /**
      * Créer un adopteur
      * 
      * @param Adopt $adopt Entité Adopt

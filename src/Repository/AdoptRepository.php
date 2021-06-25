@@ -19,22 +19,18 @@ class AdoptRepository extends ServiceEntityRepository
         parent::__construct($registry, Adopt::class);
     }
 
-    // /**
-    //  * @return Adopt[] Returns an array of Adopt objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Adopt[] Returns an array of Adopt objects
+     */
+    public function findLastAdoptedAnimals()
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('a.createdAt', 'DESC')
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Adopt

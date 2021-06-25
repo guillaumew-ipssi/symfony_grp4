@@ -72,6 +72,11 @@ class Adopt
     private $createdAt;
 
     /**
+     * @ORM\OneToOne(targetEntity=Animal::class, mappedBy="adopt", cascade={"persist", "remove"})
+     */
+    private $animal;
+
+    /**
      * Adopt constructor.
      *
      * @param User $user Le futur maitre de l'animal
@@ -159,36 +164,6 @@ class Adopt
         return $this;
     }
 
-    /**
-     * @return Collection|Animal[]
-     */
-    public function getAnimals(): Collection
-    {
-        return $this->animals;
-    }
-
-    public function addAnimal(Animal $animal): self
-    {
-        if (!$this->animals->contains($animal)) {
-            $this->animals[] = $animal;
-            $animal->setAdopt($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAnimal(Animal $animal): self
-    {
-        if ($this->animals->removeElement($animal)) {
-            // set the owning side to null (unless already changed)
-            if ($animal->getAdopt() === $this) {
-                $animal->setAdopt(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getMobile(): ?int
     {
         return $this->mobile;
@@ -212,6 +187,28 @@ class Adopt
     public function setCreatedAt(): self
     {
         $this->createdAt = new \DateTimeImmutable();
+
+        return $this;
+    }
+
+    public function getAnimal(): ?Animal
+    {
+        return $this->animal;
+    }
+
+    public function setAnimal(?Animal $animal): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($animal === null && $this->animal !== null) {
+            $this->animal->setAdopt(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($animal !== null && $animal->getAdopt() !== $this) {
+            $animal->setAdopt($this);
+        }
+
+        $this->animal = $animal;
 
         return $this;
     }

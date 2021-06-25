@@ -19,20 +19,6 @@ class AnimalRepository extends ServiceEntityRepository
         parent::__construct($registry, Animal::class);
     }
 
-    /**
-     * @return Animal[] Returns an array of Animal objects
-     */
-    public function findLastAdoptedAnimals()
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.adopt is not null')
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(3)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
     /*
     public function findOneBySomeField($value): ?Animal
     {

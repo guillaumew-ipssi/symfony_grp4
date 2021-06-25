@@ -40,16 +40,6 @@ class AnimalManager
         return $this->em->getRepository(Animal::class)->findAll();
    }
 
-   /**
-     * Liste des entités Animal
-     *
-     * @return array
-     */
-    public function getLastAdopted(): array
-    {
-        return $this->em->getRepository(Animal::class)->findLastAdoptedAnimals();
-    }
-
     /**
      * Adopter un animal
      * 

@@ -23,17 +23,17 @@ class AnimalController extends AbstractController
      * @return Response
      * @Route("/animal", name="animal")
      */
-    public function list(AnimalManager $animalManager): Response
+    public function list(AnimalManager $animalManager, AdoptManager $adoptManager): Response
     {
         $animals = $animalManager->listAnimal();
 
-        $lastAdoptedAnimals = $animalManager->getLastAdopted();
+        $adopts = $adoptManager->getLastAdopted();
 
         return $this->render(
             'animal/index.html.twig',
             [
                 'animals' => $animals,
-                'last_animals' => $lastAdoptedAnimals
+                'adopts' => $adopts
             ]
         );
     }

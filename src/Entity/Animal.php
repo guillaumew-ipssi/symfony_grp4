@@ -49,7 +49,7 @@ class Animal
     private $path;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Adopt::class, inversedBy="animals")
+     * @ORM\OneToOne(targetEntity=Adopt::class, inversedBy="animal", cascade={"persist", "remove"})
      */
     private $adopt;
 

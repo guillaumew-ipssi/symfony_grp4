@@ -5,13 +5,13 @@
 
 {% block body %}
 	<div class="container">
-		<div class="row row-cols-2 row-cols-lg-3 g-2 g-lg-3 mt-5 mb-5 border">
-			{% for animal_adopted in last_animals %}
-
+		<div class="row row-cols-2 row-cols-lg-6 g-2 g-lg-3 mt-5 mb-5 border" style="background-color: #faefe4">
+		<h2>Les dernières adoptions</h2>
+			{% for adopt in adopts %}
 				<div class="col">
-					<a href="{{ path('animal_show', {'id': animal_adopted.id}) }}">
+					<a href="{{ path('animal_show', {'id': adopt.animal.id}) }}">
 					<div class="card" style="width: 10rem">
-						<img class="card-img-top" src={{ asset('img/animals/' ~ animal_adopted.path) }} alt="{{ animal_adopted.name }}">
+						<img class="card-img-top" src={{ asset('img/animals/' ~ adopt.animal.path) }} alt="{{ adopt.animal.name }}">
 						
 					</div>
 					</a>
